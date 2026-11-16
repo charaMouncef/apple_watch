@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Regular";
+  src: url("/fonts/regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Medium";
+  src: url("/fonts/medium.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SemiBold";
+  src: url("/fonts/semibold.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bold";
+  src: url("/fonts/bold.woff2") format("woff2");
+  font-display: swap;
+}
+
+@theme {
+  --font-regular: "Regular";
+  --font-medium: "Medium";
+  --font-semibold: "SemiBold";
+  --font-bold: "Bold";
+  --color-primary: #0071e3;
+  --color-dark-100: #86868b;
+  --color-dark-200: #2e2e30;
+  --color-light-100: #adb5bd;
+}
+
+body {
+  width: 100%;
+  overflow-x: clip;
+  background-color: #000;
+  color: var(--color-dark-100);
+  font-family: var(--font-semibold);
+}
+
+@utility flex-center {
+  @apply flex justify-center items-center;
+}
+
+@utility flex-between {
+  @apply flex justify-between items-center;
+}
+
+@utility col-center {
+  @apply flex justify-center items-center flex-col;
+}
+
+@utility h3-semibold {
+  @apply font-semibold text-xl text-dark-100;
+}
+
+@utility base-semibold {
+  @apply font-semibold text-base text-dark-100;
+}
+
+@utility small-medium {
+  @apply font-medium text-xs;
+}
+
+@layer components {
+  header {
+    @apply w-screen min-h-[7vh] fixed top-0 left-0 z-50 flex-center border-b-2 border-dark-200 bg-black;
+
+    nav {
+      @apply max-w-7xl container mx-auto flex-between px-5;
+
+      img {
+        @apply cursor-pointer hover:-translate-y-0.5 transition-all duration-300 ease-in-out;
+      }
+      button {
+        @apply bg-transparent border-none outline-none cursor-pointer;
+      }
+    }
+
+    ul {
+      @apply flex-center gap-5;
+
+      a {
+        @apply hidden md:block opacity-80 text-white font-regular text-sm cursor-pointer hover:opacity-100 transition-all duration-300 ease-in-out;
+      }
+    }
+  }
+
+  #hero {
+    @apply h-fit col-center mt-[9vh];
+
+    h1 {
+      @apply flex-center gap-1 text-3xl font-bold text-white text-center;
+
+      img {
+        @apply w-8 h-8;
+      }
+
+      span {
+        @apply font-regular text-3xl;
+      }
+    }
+
+    h2 {
+      @apply text-6xl uppercase font-semibold text-white text-center mt-5;
+    }
+
+    .container {
+      @apply relative w-full flex-center;
+
+      .img {
+        @apply w-[60%] max-w-7xl mt-10;
+      }
+      .img1 {
+        animation: showFirst 20s ease-out infinite;
+      }
+
+      .img2 {
+        @apply absolute opacity-0;
+        animation: showSecond 20s ease-in infinite;
+      }
+    }
+
+    button {
+      @apply bg-primary text-lg text-white font-semibold cursor-pointer px-6 py-2 rounded-full hover:scale-105 transition-all duration-300 ease-in-out;
+    }
+
+    p {
+      @apply text-dark-100 text-center mt-5;
+    }
+  }
+}
+
+@keyframes showFirst {
+  0%
+  {
+    opacity: 1;
+  }
+  25%{
+    opacity: 0;
+  }
+50% {
+    opacity: 0;
+  }
+  75%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showSecond {
+  0%
+  {
+    opacity: 0;
+  }
+  25%{
+    opacity: 0;
+  }
+50% {
+    opacity: 1;
+  }
+  75%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
