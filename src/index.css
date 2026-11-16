@@ -37,7 +37,6 @@
 
 body {
   width: 100%;
-  overflow-x: clip;
   background-color: #000;
   color: var(--color-dark-100);
   font-family: var(--font-semibold);
@@ -92,7 +91,7 @@ body {
   }
 
   #hero {
-    @apply h-fit col-center mt-[9vh];
+    @apply h-fit col-center mt-[9vh] overflow-x-hidden;
 
     h1 {
       @apply flex-center gap-1 text-3xl font-bold text-white text-center;
@@ -107,14 +106,14 @@ body {
     }
 
     h2 {
-      @apply text-6xl uppercase font-semibold text-white text-center mt-5;
+      @apply text-4xl md:text-6xl uppercase font-semibold text-white text-center mt-5;
     }
 
     .container {
       @apply relative w-full flex-center;
 
       .img {
-        @apply w-[60%] max-w-7xl mt-10;
+        @apply md:w-[60%] max-w-4xl mt-10;
       }
       .img1 {
         animation: showFirst 20s ease-out infinite;
@@ -132,6 +131,62 @@ body {
 
     p {
       @apply text-dark-100 text-center mt-5;
+    }
+  }
+
+  #product-viewer {
+    @apply w-full overflow-x-hidden;
+
+    .fallback {
+      @apply fixed inset-0 grid place-items-center bg-black text-white;
+    }
+
+    .intro {
+      @apply h-[40vh] md:h-[75vh] relative grid place-items-center;
+    }
+
+    .title {
+      @apply w-fit text-4xl md:text-6xl text-white text-center font-bold absolute;
+    }
+
+    .title-top {
+      @apply top-[5%];
+    }
+
+    .title-bottom {
+      @apply bottom-[5%];
+    }
+
+    .canvas {
+      @apply h-[40vh] md:h-[75vh] w-[100vw] text-white;
+    }
+
+    .feature {
+      @apply h-[40vh] md:h-[75vh] relative flex items-center justify-evenly;
+    }
+
+    .spacer {
+      @apply w-[50%];
+    }
+
+    .copy {
+      @apply  w-[50%] text-white text-xl font-semibold text-center md:px-4 lg:px-10;
+
+      .desktop-text{
+        @apply hidden md:block;
+      }
+
+      .mobile-text{
+        @apply block md:hidden;
+      }
+    }
+
+    .copy-left {
+      @apply order-1;
+    }
+
+    .feature:has(.copy-left) .spacer {
+      @apply order-2;
     }
   }
 }
