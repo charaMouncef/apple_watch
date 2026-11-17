@@ -33,7 +33,11 @@ export default function Health() {
       <div id="tracking">
         <h3>Advanced Health and Fitness Tracking</h3>
         <h2>Run with all your heart.</h2>
-        <img src="/health_tracking.jpg" alt="health_tracking" loading="lazy" />
+        <img
+          src="/healths/health_tracking.jpg"
+          alt="health_tracking"
+          loading="lazy"
+        />
         <p className="desktop-text">
           Heart data is fundamental in tracking your overall health and
           performance. Redesigned with more capable optical and electrical
@@ -50,7 +54,7 @@ export default function Health() {
         </p>
       </div>
       <div id="ready">
-        <img src="/health_ready.jpg" alt="health_ready" loading="lazy" />
+        <img src="/healths/health_ready.jpg" alt="health_ready" loading="lazy" />
 
         <p className="desktop-text">
           <span>Ready advice.</span> The new readiness experience can help you
@@ -68,7 +72,11 @@ export default function Health() {
         </p>
       </div>
       <div id="tracking_hrv">
-        <img src="/health_tracking_hrv.jpg" alt="health_hrv" loading="lazy" />
+        <img
+          src="/healths/health_tracking_hrv.jpg"
+          alt="health_hrv"
+          loading="lazy"
+        />
         <div className="content">
           <p>
             <span>HRV? Check.</span>
@@ -76,7 +84,7 @@ export default function Health() {
             and recovery. Apple Watch Ultra 4 tracks HRV every five minutes,
             helping you monitor your health and recovery throughout the day.
           </p>
-         
+
           <div className="right">
             <p>
               <span>60x</span>
