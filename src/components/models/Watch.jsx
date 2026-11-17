@@ -1,7 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 
 export function Watch(props) {
-  const { nodes, materials } = useGLTF("/models/apple_watch_ultra_2.glb");
+  const { nodes, materials } = useGLTF("/models/apple_watch_ultra_4.glb");
   return (
     <group {...props} dispose={null}>
       <group scale={0.01}>
@@ -340,4 +340,4 @@ export function Watch(props) {
   );
 }
 
-useGLTF.preload("/models/apple_watch_ultra_2.glb");
+useGLTF.preload("/models/apple_watch_ultra_4.glb");

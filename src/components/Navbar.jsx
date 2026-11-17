@@ -7,7 +7,7 @@ export default function Navbar(){
           <ul>
             {navLinks.map(({ label }) => (
               <li key={label}>
-                <a href="">{label}</a>
+                <a href="/#">{label}</a>
               </li>
             ))}
           </ul>
