@@ -5,9 +5,9 @@ export default function Navbar(){
         <nav>
           <img src="/logo.svg" alt="Apple logo" />
           <ul>
-            {navLinks.map(({ label }) => (
+            {navLinks.map(({ label,link }) => (
               <li key={label}>
-                <a href="/#">{label}</a>
+                <a href={link}>{label}</a>
               </li>
             ))}
           </ul>

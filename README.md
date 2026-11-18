@@ -1,16 +1,113 @@
-# React + Vite
+# Apple Watch Ultra 4 Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An Apple-style product landing page for the Apple Watch Ultra 4, built with React, Vite, and Three.js. It features a scroll-driven 3D watch model, GSAP scroll animations, and a fully responsive layout.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Category | Technology |
+| --- | --- |
+| Framework | [React 19](https://react.dev/) |
+| Build Tool | [Vite 8](https://vite.dev/) |
+| Styling | [Tailwind CSS v4](https://tailwindcss.com/) |
+| 3D Rendering | [Three.js](https://threejs.org/) via [@react-three/fiber](https://r3f.docs.pmnd.rs/) & [@react-three/drei](https://github.com/pmndrs/drei) |
+| Animation | [GSAP](https://gsap.com/) + ScrollTrigger + [@gsap/react](https://gsap.com/resources/React/) |
+| Smooth Scrolling | [Lenis](https://github.com/darkroomengineering/lenis) |
+| Responsive Queries | [react-responsive](https://github.com/contra/react-responsive) |
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js 20.19+ or 22.12+ (recommended)
+- npm
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
+Starts the Vite dev server with hot module replacement.
+
+### Build
+
+```bash
+npm run build
+```
+
+Generates a production build in the `dist/` folder.
+
+### Preview
+
+```bash
+npm run preview
+```
+
+Serves the production build locally.
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+├── public/                        Static assets (models, images, fonts, icons)
+├── src/
+│   ├── main.jsx                   App entry point (mounts <App /> in StrictMode)
+│   ├── App.jsx                    Page composition and Lenis/ScrollTrigger setup
+│   ├── index.css                  Global styles (Tailwind theme, utilities, component styles)
+│   ├── constants/
+│   │   └── index.js               Nav links, feature cards, footer links
+│   └── components/
+│       ├── Navbar.jsx             Fixed Apple-style navigation
+│       ├── Hero.jsx               Title, crossfading hero images, and Buy CTA
+│       ├── ProductViewer.jsx      3D canvas, scroll timeline, and feature copy
+│       ├── Health.jsx             Health and fitness tracking sections
+│       ├── Features.jsx           Pinned horizontal scrolling cards
+│       ├── Footer.jsx             Footer links and copyright
+│       ├── three/
+│       │   ├── Scene.jsx          Camera and scroll-driven camera path
+│       │   └── StudioLights.jsx   Environment lighting setup
+│       └── models/
+│           └── Watch.jsx          gltfjsx-generated watch model
+└── index.html                     SEO and social media metadata
+```
+
+## Features
+
+- **Scroll-driven 3D camera** — The camera travels through four keyframe angles as the page scrolls, with separate positions for mobile and desktop.
+- **Smooth scrolling** — Lenis is synced with GSAP's ticker so scroll-linked animations stay in step.
+- **Scroll animations** — GSAP timelines with ScrollTrigger handle text reveals, canvas movement, and pinned horizontal cards.
+- **Responsive design** — `react-responsive` adapts camera positions, model scale, and copy length on smaller screens.
+- **Custom theming** — Tailwind v4 `@theme` tokens, custom fonts, and reusable utilities defined in `src/index.css`.
+- **SEO metadata** — `index.html` includes a description, canonical URL, Open Graph, and Twitter card tags.
+
+## How It Works
+
+1. **Setup** — `App.jsx` composes the six sections and drives Lenis from `gsap.ticker`, forwarding scroll events to `ScrollTrigger.update`.
+2. **Scroll progress** — `ProductViewer` uses a scrubbed ScrollTrigger timeline to move the canvas element and store scroll progress in `progressRef`.
+3. **3D scene** — Each frame, `Scene` interpolates between four camera positions based on that progress and eases the camera with `gsap.quickTo`. `Watch` renders the preloaded GLB model.
+4. **Reveals and pinning** — `ProductViewer` and `Health` register `useGSAP` text reveals. `Features` pins itself and scrubs the cards horizontally by the computed overflow width.
+5. **Styling** — All component styling lives in `src/index.css` using Tailwind's `@layer components` with nested selectors.
+
+## Assets
+
+All static assets are served from `public/`:
+
+- `models/` — The `apple_watch_ultra_4.glb` 3D model
+- `fonts/` — Custom Regular, Medium, SemiBold, and Bold font files
+- `healths/` and `features/` — Section imagery
+- `hero.jpg`, `hero2.jpg`, and SVG icons/logo referenced throughout the components
+
+## License
+
+No open-source license is included in this repository. Apple Watch, the Apple logo, and related product imagery are trademarks of Apple Inc.
