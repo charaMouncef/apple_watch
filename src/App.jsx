@@ -54,9 +54,7 @@ function App() {
     <main className="bg-black">
       <Navbar />
       <Hero />
-      <Suspense fallback={<div className="h-[160vh] md:h-[300vh]" />}>
-        <ProductViewer />
-      </Suspense>
+      <ProductViewer />
       <Health />
       <Features />
       <Footer />
