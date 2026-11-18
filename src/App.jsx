@@ -38,7 +38,13 @@ function App() {
     };
   }, []);
 
-  
+  useEffect(() => {
+    if (!loaded) return;
+
+    // Lazy sections change the page height as they mount.
+    const frame = requestAnimationFrame(() => ScrollTrigger.refresh());
+    return () => cancelAnimationFrame(frame);
+  }, [loaded]);
 
   if (!loaded) {
     return <Loader onFinish={handleLoaderFinish} />;
