@@ -10,8 +10,20 @@ export default function Hero() {
         </h2>
       </div>
       <div className="container">
-        <img className="img img1" src="/hero.jpg" alt="White Watch Ultra 4" />
-        <img className="img img2" src="/hero2.jpg" alt="Black Watch Ultra 4" />
+        <img
+          className="img img1"
+          src="/hero.jpg"
+          alt="White Watch Ultra 4"
+          width={1868}
+          height={664}
+        />
+        <img
+          className="img img2"
+          src="/hero2.jpg"
+          alt="Black Watch Ultra 4"
+          width={1868}
+          height={664}
+        />
       </div>
       <button>Buy</button>
       <p>From $799 or $66.58/mo. for 12 months.</p>

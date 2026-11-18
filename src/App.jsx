@@ -56,14 +56,8 @@ function App() {
       <Hero />
       <Suspense fallback={null}>
         <ProductViewer />
-      </Suspense>
-      <Suspense fallback={null}>
         <Health />
-      </Suspense>
-      <Suspense fallback={null}>
         <Features />
-      </Suspense>
-      <Suspense fallback={null}>
         <Footer />
       </Suspense>
     </main>

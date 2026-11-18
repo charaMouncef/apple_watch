@@ -88,6 +88,7 @@ npm run lint
 - **Loading screen** — A progress-bar loader covers the app until fonts are ready and a minimum display time has elapsed.
 - **Scroll-driven 3D camera** — The camera travels through four keyframe angles as the page scrolls, with separate positions for mobile and desktop.
 - **Smooth scrolling** — Lenis is synced with GSAP's ticker so scroll-linked animations stay in step.
+- **Stable scroll measurements** — Images declare intrinsic dimensions so lazy loading doesn't shift section heights and invalidate pinned trigger positions.
 - **Scroll animations** — GSAP timelines with ScrollTrigger handle text reveals, canvas movement, and pinned horizontal cards.
 - **Responsive design** — `react-responsive` adapts camera positions, model scale, and copy length on smaller screens.
 - **Custom theming** — Tailwind v4 `@theme` tokens, custom fonts, and reusable utilities defined in `src/index.css`.
@@ -95,7 +96,7 @@ npm run lint
 
 ## How It Works
 
-1. **Loading and setup** — `App.jsx` preloads the GLB, shows `Loader` until fonts are ready, then mounts the page. `ProductViewer`, `Health`, `Features`, and `Footer` are lazy-loaded and wrapped in `Suspense`.
+1. **Loading and setup** — `App.jsx` preloads the GLB, shows `Loader` until fonts are ready, then mounts the page. `ProductViewer`, `Health`, `Features`, and `Footer` are lazy-loaded behind a single `Suspense` boundary so they mount together once their chunks are ready.
 2. **Smooth scrolling** — Lenis is driven from `gsap.ticker`, forwarding scroll events to `ScrollTrigger.update`; lazy sections trigger a `ScrollTrigger.refresh()` once the page mounts.
 3. **Scroll progress** — `ProductViewer` uses a scrubbed ScrollTrigger timeline to move the canvas element and store scroll progress in `progressRef`.
 4. **3D scene** — Each frame, `Scene` interpolates between four camera positions based on that progress and eases the camera with `gsap.quickTo`. `Watch` renders the preloaded GLB model.

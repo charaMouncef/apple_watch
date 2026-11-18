@@ -36,6 +36,8 @@ export default function Health() {
         <img
           src="/healths/health_tracking.jpg"
           alt="health_tracking"
+          width={1868}
+          height={1924}
           loading="lazy"
         />
         <p className="desktop-text">
@@ -54,7 +56,13 @@ export default function Health() {
         </p>
       </div>
       <div id="ready">
-        <img src="/healths/health_ready.jpg" alt="health_ready" loading="lazy" />
+        <img
+          src="/healths/health_ready.jpg"
+          alt="health_ready"
+          width={2058}
+          height={1022}
+          loading="lazy"
+        />
 
         <p className="desktop-text">
           <span>Ready advice.</span> The new readiness experience can help you
@@ -75,6 +83,8 @@ export default function Health() {
         <img
           src="/healths/health_tracking_hrv.jpg"
           alt="health_hrv"
+          width={1926}
+          height={1678}
           loading="lazy"
         />
         <div className="content">

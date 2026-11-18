@@ -39,7 +39,7 @@ export default function Features() {
           anticipatePin: 1,
           scrub: 3,
           invalidateOnRefresh: true,
-          markers: true, // Debugging
+          // markers: true, // Debugging
         },
       });
     },
@@ -58,7 +58,13 @@ export default function Features() {
             <span>{card.title}</span>
             <h3>{card.description}</h3>
             <div className="spacer"></div>
-            <img src={card.img} alt={card.alt} loading="lazy" />
+            <img
+              src={card.img}
+              alt={card.alt}
+              width={688}
+              height={520}
+              loading="lazy"
+            />
           </div>
         ))}
       </div>
