@@ -63,7 +63,7 @@ npm run lint
 ├── public/                        Static assets (models, images, fonts, icons)
 ├── src/
 │   ├── main.jsx                   App entry point (mounts <App /> in StrictMode)
-│   ├── App.jsx                    Loader gate, lazy section imports, GLB preload, Lenis/ScrollTrigger setup
+│   ├── App.jsx                    Loader gate, lazy 3D viewer, GLB preload, Lenis/ScrollTrigger setup
 │   ├── index.css                  Global styles (Tailwind theme, utilities, component styles)
 │   ├── constants/
 │   │   └── index.js               Nav links, feature cards, footer links
@@ -96,8 +96,8 @@ npm run lint
 
 ## How It Works
 
-1. **Loading and setup** — `App.jsx` preloads the GLB, shows `Loader` until fonts are ready, then mounts the page. `ProductViewer`, `Health`, `Features`, and `Footer` are lazy-loaded behind a single `Suspense` boundary so they mount together once their chunks are ready.
-2. **Smooth scrolling** — Lenis is driven from `gsap.ticker`, forwarding scroll events to `ScrollTrigger.update`; lazy sections trigger a `ScrollTrigger.refresh()` once the page mounts.
+1. **Loading and setup** — `App.jsx` preloads the GLB, shows `Loader` until fonts are ready, then mounts the page. Only `ProductViewer` is lazy-loaded behind `Suspense`; it uses a height-matched fallback so the rest of the page layout doesn't shift while the 3D chunk loads. `Health`, `Features`, and `Footer` mount eagerly.
+2. **Smooth scrolling** — Lenis is driven from `gsap.ticker`, forwarding scroll events to `ScrollTrigger.update`; a `ScrollTrigger.refresh()` runs once the lazy viewer mounts.
 3. **Scroll progress** — `ProductViewer` uses a scrubbed ScrollTrigger timeline to move the canvas element and store scroll progress in `progressRef`.
 4. **3D scene** — Each frame, `Scene` interpolates between four camera positions based on that progress and eases the camera with `gsap.quickTo`. `Watch` renders the preloaded GLB model.
 5. **Reveals and pinning** — `ProductViewer` and `Health` register `useGSAP` text reveals. `Features` pins itself and scrubs the cards horizontally by the computed overflow width.

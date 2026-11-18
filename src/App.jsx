@@ -1,5 +1,8 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Health from "./components/Health";
+import Features from "./components/Features";
+import Footer from "./components/Footer";
 import Loader from "./components/Loader";
 import { lazy, Suspense, useState, useEffect, useCallback } from "react";
 import Lenis from "lenis";
@@ -11,9 +14,6 @@ gsap.registerPlugin(ScrollTrigger);
 useGLTF.preload("/models/apple_watch_ultra_4.glb");
 
 const ProductViewer = lazy(() => import("./components/ProductViewer"));
-const Health = lazy(() => import("./components/Health"));
-const Features = lazy(() => import("./components/Features"));
-const Footer = lazy(() => import("./components/Footer"));
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     if (!loaded) return;
 
-    // Lazy sections change the page height as they mount.
+    // Keep trigger positions accurate once the lazy 3D viewer mounts.
     const frame = requestAnimationFrame(() => ScrollTrigger.refresh());
     return () => cancelAnimationFrame(frame);
   }, [loaded]);
@@ -54,12 +54,12 @@ function App() {
     <main className="bg-black">
       <Navbar />
       <Hero />
-      <Suspense fallback={null}>
+      <Suspense fallback={<div className="h-[160vh] md:h-[300vh]" />}>
         <ProductViewer />
-        <Health />
-        <Features />
-        <Footer />
       </Suspense>
+      <Health />
+      <Features />
+      <Footer />
     </main>
   );
 }

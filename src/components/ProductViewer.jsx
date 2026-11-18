@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -85,7 +85,9 @@ export default function ProductViewer() {
 
         <div ref={sceneRef} className="canvas">
           <Canvas>
-            <Scene progressRef={progressRef} isMobile={isMobile} />
+            <Suspense fallback={null}>
+              <Scene progressRef={progressRef} isMobile={isMobile} />
+            </Suspense>
           </Canvas>
         </div>
       </section>
