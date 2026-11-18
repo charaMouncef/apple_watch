@@ -39,7 +39,7 @@ export default function Features() {
           anticipatePin: 1,
           scrub: 3,
           invalidateOnRefresh: true,
-          //markers: true, // Debugging
+          markers: true, // Debugging
         },
       });
     },

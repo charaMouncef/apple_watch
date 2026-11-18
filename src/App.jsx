@@ -1,46 +1,67 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import ProductViewer from "./components/ProductViewer";
-import Health from "./components/Health";
-import Features from "./components/Features";
-import Footer from "./components/Footer";
-import { useEffect } from "react";
+import Loader from "./components/Loader";
+import { lazy, Suspense, useState, useEffect, useCallback } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGLTF } from "@react-three/drei";
 
 gsap.registerPlugin(ScrollTrigger);
+useGLTF.preload("/models/apple_watch_ultra_4.glb");
+
+const ProductViewer = lazy(() => import("./components/ProductViewer"));
+const Health = lazy(() => import("./components/Health"));
+const Features = lazy(() => import("./components/Features"));
+const Footer = lazy(() => import("./components/Footer"));
 
 function App() {
+  const [loaded, setLoaded] = useState(false);
 
- useEffect(() => {
-   const lenis = new Lenis();
+  const handleLoaderFinish = useCallback(() => setLoaded(true), []);
 
-   lenis.on("scroll", ScrollTrigger.update);
+  useEffect(() => {
+    const lenis = new Lenis();
 
-   const tickerCallback = (time) => {
-     lenis.raf(time * 1000);
-   };
+    lenis.on("scroll", ScrollTrigger.update);
 
-   gsap.ticker.add(tickerCallback);
-   gsap.ticker.lagSmoothing(0);
+    const tickerCallback = (time) => {
+      lenis.raf(time * 1000);
+    };
 
-   return () => {
-     gsap.ticker.remove(tickerCallback);
-     lenis.destroy();
-   };
- }, []);
+    gsap.ticker.add(tickerCallback);
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      gsap.ticker.remove(tickerCallback);
+      lenis.destroy();
+    };
+  }, []);
+
+  
+
+  if (!loaded) {
+    return <Loader onFinish={handleLoaderFinish} />;
+  }
 
   return (
     <main className="bg-black">
-      <Navbar/>
-      <Hero/>
-      <ProductViewer/>
-      <Health/>
-      <Features/>
-      <Footer/>
+      <Navbar />
+      <Hero />
+      <Suspense fallback={null}>
+        <ProductViewer />
+      </Suspense>
+      <Suspense fallback={null}>
+        <Health />
+      </Suspense>
+      <Suspense fallback={null}>
+        <Features />
+      </Suspense>
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </main>
   );
 }
 
-export default App
+export default App;
