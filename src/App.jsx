@@ -3,7 +3,7 @@ import Hero from "./components/Hero";
 import ProductViewer from "./components/ProductViewer";
 import Health from "./components/Health";
 import Features from "./components/Features";
-
+import Footer from "./components/Footer";
 import { useEffect } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
@@ -38,6 +38,7 @@ function App() {
       <ProductViewer/>
       <Health/>
       <Features/>
+      <Footer/>
     </main>
   );
 }

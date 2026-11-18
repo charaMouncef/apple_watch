@@ -287,6 +287,38 @@ body {
       }
     }
   }
+
+   footer {
+    @apply w-full mx-auto py-7 px-5;
+
+    .info {
+      @apply max-w-7xl flex-between mx-auto;
+
+      p {
+        @apply text-sm font-medium;
+
+        span {
+          @apply text-primary mx-0.5;
+        }
+      }
+    }
+
+    hr {
+      @apply my-7 text-[#424245];
+    }
+
+    .links {
+      @apply max-w-7xl flex flex-col lg:flex-row lg:items-center justify-between mx-auto gap-5 text-sm;
+
+      ul {
+        @apply lg:divide-x flex flex-col lg:flex-row gap-2.5;
+
+        li {
+          @apply lg:px-5 cursor-pointer hover:text-primary transition-all duration-300 ease-in-out;
+        }
+      }
+    }
+  }
 }
 @keyframes showFirst {
   0% {
