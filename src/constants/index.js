@@ -4,7 +4,7 @@ export const navLinks = [
   { label: "iPhone", link: "#" },
   { label: "Watch", link: "https://watch3d-mouncef.netlify.app" },
   { label: "Vision", link: "#" },
-  { label: "AirPods", link: "#" },
+  { label: "AirPods", link: "https://airpods-mouncef.netlify.app" },
 ];
 
 export const cardsList = [
